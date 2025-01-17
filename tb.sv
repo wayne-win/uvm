@@ -28,6 +28,18 @@ class pe_seq_item extends uvm_sequence_item;
     endfunction
 endclass
 
+class extend_pe_seq_itm extends pe_seq_item;
+    `uvm_object_utils(extend_pe_seq_itm)
+
+    constraint c1 { soft op_a inside {[5:150]}; }
+    constraint c2 { soft op_b < op_a; }
+    constraint c3 { soft op inside {[2:3]}; }
+
+    function new(string name = "");
+        super.new(name);
+    endfunction
+endclass
+
 class pe_seq extends uvm_sequence#(pe_seq_item);
     `uvm_object_utils(pe_seq)
 
@@ -226,19 +238,35 @@ class pe_env extends uvm_env;
   endtask: run_phase
 endclass
 
+class extend_pe_env extends pe_env;
+  `uvm_component_utils(extend_pe_env)
+
+  function new(string name, uvm_component parent = null);
+    super.new(name, parent);
+  endfunction
+
+  function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    set_type_override_by_type (pe_seq_item::get_type(), extend_pe_seq_itm::get_type());
+  endfunction: build_phase
+
+endclass
 //-----------
 // module top
 //-----------
 module top;
 
   bit clk;
+`ifdef EXTEND
+  extend_pe_env environment;
+`else
   pe_env environment;
+`endif
 
   pe dut(.clk (clk));
 
   initial begin
     environment = new("m_env");
-    // uvm_config_db#(virtual pe_if)::set(null, "m_env.m_drv", "pe_if", dut.pe_if0);
     uvm_config_db#(virtual pe_if)::set(null, "m_env.*", "pe_if", dut.pe_if0);
     clk = 0;
     run_test();

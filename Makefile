@@ -3,6 +3,8 @@ bld_dir := ./build
 uvm_dir := ./uvm-core-2020.3.1/src
 src_dir := ./src
 
+PATTERN := 
+
 FSDB_DEF :=
 ifeq ($(FSDB),1)
 FSDB_DEF := +FSDB
@@ -24,6 +26,7 @@ run : $(bld_dir)
 	+incdir+$(root_dir)/$(uvm_dir) \
 	+incdir+$(root_dir)/$(src_dir) \
 	-timescale=1ns/1ps \
+	+define+$(PATTERN) \
 	+define$(DEBUG_DEF)$(FSDB_DEF) \
 	+define+UVM_CMDLINE_NO_DPI \
 	+define+UVM_REGEX_NO_DPI 

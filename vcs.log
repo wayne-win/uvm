@@ -1,0 +1,446 @@
+Command: vcs -R -full64 -sverilog ./uvm-core-2020.3.1/src/uvm.sv tb.sv -l vcs.log \
+-debug_access+all +stdout=run.log +incdir+./uvm-core-2020.3.1/src +incdir+./src +define \
++define+UVM_CMDLINE_NO_DPI +define+UVM_REGEX_NO_DPI
+                         Chronologic VCS (TM)
+       Version U-2023.03-SP2_Full64 -- Wed Jan 15 16:27:09 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file './uvm-core-2020.3.1/src/uvm.sv'
+Parsing included file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_version_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_global_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_message_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_phase_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_printer_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_comparer_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_recorder_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_resource_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_packer_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_copier_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_object_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_tlm_defines.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_imps.svh'.
+Back to file './uvm-core-2020.3.1/src/macros/uvm_tlm_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_sequence_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_callback_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/macros/uvm_reg_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Parsing included file './uvm-core-2020.3.1/src/deprecated/macros/uvm_sequence_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/dpi/uvm_dpi.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dpi/uvm_hdl.svh'.
+Back to file './uvm-core-2020.3.1/src/dpi/uvm_dpi.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dpi/uvm_svcmd_dpi.svh'.
+Back to file './uvm-core-2020.3.1/src/dpi/uvm_dpi.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dpi/uvm_regex.svh'.
+Back to file './uvm-core-2020.3.1/src/dpi/uvm_dpi.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_version.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_object_globals.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_misc.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_coreservice.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_globals.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_object.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_factory.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_registry.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_pool.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_queue.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_spell_chkr.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_base.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_pool.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_specializations.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_db_implementation.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_db.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_resource_db_options.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_config_db_implementation.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_config_db.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_policy.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_field_op.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_copier.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_printer.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_comparer.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_packer.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_packer_array_extension.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_links.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_tr_database.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_text_tr_database.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_tr_stream.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_text_tr_stream.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_recorder.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_event_callback.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_event.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_barrier.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_callback.svh'.
+Parsing included file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_callback.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_report_message.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_report_catcher.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_report_server.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_report_handler.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_report_object.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_transaction.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_phase.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_domain.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_bottomup_phase.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_topdown_phase.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_task_phase.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_common_phases.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_runtime_phases.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_phase_hopper.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_run_test_callback.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_component.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_root.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_component.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_objection.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_heartbeat.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_cmdline_processor.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_cmdline_report.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_traversal.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_cache.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_lru_cache.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_process_guard_base.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_process_guard.svh'.
+Back to file './uvm-core-2020.3.1/src/base/uvm_base.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/dap/uvm_dap.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dap/uvm_set_get_dap_base.svh'.
+Back to file './uvm-core-2020.3.1/src/dap/uvm_dap.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dap/uvm_simple_lock_dap.svh'.
+Back to file './uvm-core-2020.3.1/src/dap/uvm_dap.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dap/uvm_get_to_lock_dap.svh'.
+Back to file './uvm-core-2020.3.1/src/dap/uvm_dap.svh'.
+Parsing included file './uvm-core-2020.3.1/src/dap/uvm_set_before_get_dap.svh'.
+Back to file './uvm-core-2020.3.1/src/dap/uvm_dap.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_ifs.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_sqr_ifs.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/base/uvm_port_base.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_imps.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_imps.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_ports.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_exports.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_analysis_port.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_fifo_base.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_fifos.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_tlm_req_rsp.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm1/uvm_sqr_connections.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm1/uvm_tlm.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_pair.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_policies.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_in_order_comparator.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_algorithmic_comparator.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_subscriber.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_random_stimulus.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_monitor.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_driver.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_push_driver.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_scoreboard.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_agent.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_env.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Parsing included file './uvm-core-2020.3.1/src/comps/uvm_test.svh'.
+Back to file './uvm-core-2020.3.1/src/comps/uvm_comps.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequence_item.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequencer_base.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequencer_analysis_fifo.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequencer_param_base.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequencer.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_push_sequencer.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequence_base.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequence.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Parsing included file './uvm-core-2020.3.1/src/seq/uvm_sequence_library.svh'.
+Back to file './uvm-core-2020.3.1/src/seq/uvm_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_defines.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm_time.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_generic_payload.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_ifs.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_imps.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_ports.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_exports.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_sockets_base.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Parsing included file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2_sockets.svh'.
+Back to file './uvm-core-2020.3.1/src/tlm2/uvm_tlm2.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_item.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_adapter.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_predictor.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_sequence.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_cbs.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_backdoor.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_field.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_vreg_field.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_indirect.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_fifo.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_file.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_mem_mam.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_vreg.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_mem.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_map.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/uvm_reg_block.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_randval.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_hw_reset_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_bit_bash_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_mem_walk_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_mem_access_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_access_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Parsing included file './uvm-core-2020.3.1/src/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
+Back to file './uvm-core-2020.3.1/src/reg/uvm_reg_model.svh'.
+Back to file './uvm-core-2020.3.1/src/uvm_pkg.sv'.
+Back to file './uvm-core-2020.3.1/src/uvm.sv'.
+Parsing design file 'tb.sv'
+Parsing included file './uvm-core-2020.3.1/src/uvm_macros.svh'.
+Back to file 'tb.sv'.
+Parsing included file './src/pe.sv'.
+Back to file 'tb.sv'.
+Top Level Modules:
+       tb
+No TimeScale specified
+
+Warning-[TFIPC] Too few instance port connections
+tb.sv, 112
+tb, "pe dut( .clk_i (clk));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+Starting vcs inline pass...
+
+6 modules and 0 UDP read.
+recompiling package vcs_paramclassrepository
+recompiling package _vcs_DPI_package
+recompiling package uvm_pkg
+recompiling module tb
+4 of 6 modules done
+	However, due to incremental compilation, only 4 modules need to be compiled. 
+make[1]: Entering directory `/home/user2/ms111/wayne111/dv_test/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir \
+-Wl,-rpath=/usr/cad/synopsys/vcs/cur/linux64/lib -L/usr/cad/synopsys/vcs/cur/linux64/lib \
+-Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _72351_archive_1.so \
+_prev_archive_1.so   SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o \
+rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile \
+-luclinative /usr/cad/synopsys/vcs/cur/linux64/lib/vcs_tls.o   -Wl,-whole-archive \
+-lvcsucli    -Wl,-no-whole-archive       ./../simv.daidir/vc_hdrs.o  _vcs_pli_stub_.o \
+/usr/cad/synopsys/vcs/cur/linux64/lib/vcs_save_restore_new.o /usr/cad/synopsys/verdi/cur/share/PLI/VCS/LINUX64/pli.a \
+-ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory `/home/user2/ms111/wayne111/dv_test/csrc'
+Command: /home/user2/ms111/wayne111/dv_test/./simv -a vcs.log +stdout=run.log +define +define+UVM_CMDLINE_NO_DPI +define+UVM_REGEX_NO_DPI
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version U-2023.03-SP2_Full64; Runtime version U-2023.03-SP2_Full64;  Jan 15 16:27 2025
+*Verdi* Loading libsscore_vcs202303.so
+FSDB Dumper for VCS, Release Verdi_U-2023.03-SP2, Linux x86_64/64bit, 08/28/2023
+(C) 1996 - 2023 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'top.fsdb'
+*Verdi* : Begin traversing the scope (tb.dut), layer (0).
+*Verdi* : End of traversing.
+UVM_INFO ./uvm-core-2020.3.1/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test pe_test...
+UVM_WARNING ./uvm-core-2020.3.1/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+UVM_INFO tb.sv(64) @ 0: uvm_test_top.drv [] Run pe_drv test
+UVM_INFO tb.sv(100) @ 0: uvm_test_top [] Run pe_test test
+
+Error: uninitialized virtual interface object
+  at time 0 in file tb.sv line 67
+
+#0 in \pe_drv::run_phase  at tb.sv:67
+#1 in \uvm_run_phase::exec_task  at ./uvm-core-2020.3.1/src/base/uvm_common_phases.svh:240
+#2 in \uvm_task_phase::execute  at ./uvm-core-2020.3.1/src/base/uvm_task_phase.svh:172
+#3 in \uvm_phase_hopper::execute_phase  at ./uvm-core-2020.3.1/src/base/uvm_phase_hopper.svh:478
+#4 in \uvm_phase_hopper::process_phase  at ./uvm-core-2020.3.1/src/base/uvm_phase_hopper.svh:779
+#5 in \uvm_phase_hopper::run_phases  at ./uvm-core-2020.3.1/src/base/uvm_phase_hopper.svh:386
+#6 in \uvm_root::run_test  at ./uvm-core-2020.3.1/src/base/uvm_root.svh:616
+#7 in run_test at ./uvm-core-2020.3.1/src/base/uvm_globals.svh:61
+#8 in tb at tb.sv:128
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 0
+CPU Time:      0.340 seconds;       Data structure size:   0.5Mb
+Wed Jan 15 16:27:32 2025
+Note: Execution of simv exited with code 255
+CPU time: 16.070 seconds to compile + .358 seconds to elab + .481 seconds to link + .387 seconds in simulation
