@@ -2,15 +2,22 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 `include "pe.sv"
-
+//----------------
+//  sequence_item
+//----------------
 class pe_seq_item extends uvm_sequence_item;
     `uvm_object_utils(pe_seq_item)
 
-    rand logic[3:0]  op;
-    rand bit         op_en;
-    rand logic[63:0] op_a;
-    rand logic[63:0] op_b;
-    rand logic[63:0] op_c;
+    rand logic[1:0] op;
+    rand bit        op_en;
+    rand int op_a;
+    rand logic[7:0] op_b;
+    rand logic[7:0] op_c;
+    bit done;
+    int result;
+
+    constraint c1 { soft op_a inside {[5:150]}; }
+    constraint c2 { soft op_b < op_a; }
 
     function new(string name = "");
         super.new(name);
@@ -26,7 +33,7 @@ class pe_seq extends uvm_sequence#(pe_seq_item);
 
     pe_seq_item m_item;
 
-    int num = 10;
+    int num = 20;
 
     function new(string name = "");
         super.new(name);
@@ -44,6 +51,9 @@ class pe_seq extends uvm_sequence#(pe_seq_item);
     endtask : body
 endclass
 
+//----------------
+//     driver 
+//----------------
 class pe_drv extends uvm_driver#(pe_seq_item);
   `uvm_component_utils(pe_drv)
 
@@ -60,35 +70,17 @@ class pe_drv extends uvm_driver#(pe_seq_item);
     if (!uvm_config_db#(virtual pe_if)::get(this, "", "pe_if", m_if))
       `uvm_fatal("m_drv", "Could not get vif")
     else
-      `uvm_info("m_drv", "~~~~ Got vif ~~~", UVM_LOW)
+      `uvm_info("m_drv", "Get vif successfull", UVM_LOW)
   endfunction
 
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
-    // phase.raise_objection(this);
-    // `uvm_info("LABEL", "pe_drv Started run phase.", UVM_LOW);
     forever begin
       `uvm_info("m_drv", $sformatf("Wait for item from sequencer"), UVM_HIGH)
       seq_item_port.get_next_item(m_item);
       drive_item(m_item);
       seq_item_port.item_done();
     end
-
-    // begin
-      // int a = 8'h2, b = 8'h3, c = 8'h4;
-      // int op = 4'h3;
-      // @(m_if.cb);
-      // m_if.cb.a <= a;
-      // m_if.cb.b <= b;
-      // m_if.cb.c <= c;
-      // m_if.cb.doAdd <= 1'b1;
-      // m_if.cb.op <= op;
-      // repeat(2) @(m_if.cb);
-      // `uvm_info("RESULT", $sformatf("%0d + %0d = %0d",
-      //   a, b, m_if.cb.result), UVM_LOW);
-    // end
-    // `uvm_info("LABEL", "pe_drv Finished run phase.", UVM_LOW);
-    // phase.drop_objection(this);
   endtask: run_phase
 
   virtual task drive_item(pe_seq_item item);
@@ -102,11 +94,107 @@ class pe_drv extends uvm_driver#(pe_seq_item);
   endtask : drive_item
 endclass
 
+class pe_monitor extends uvm_monitor;
+  `uvm_component_utils(pe_monitor)
+
+  virtual pe_if m_if;
+  pe_seq_item item;
+  uvm_analysis_port #(pe_seq_item) mon_analysis_port;
+
+  int result;
+
+  function new(string name, uvm_component parent);
+      super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    if (!uvm_config_db#(virtual pe_if)::get(this, "", "pe_if", m_if))
+      `uvm_fatal("m_mon", "Could not get vif")
+    else
+      `uvm_info("m_mon", "Get vif successfull...", UVM_LOW)
+    mon_analysis_port = new("mon_analysis_port", this);
+  endfunction
+
+  task run_phase(uvm_phase phase);
+    super.run_phase(phase);
+    forever begin
+      @(m_if.cb);
+        item = pe_seq_item::type_id::create("item");
+        item.op_en = m_if.en;
+        item.op = m_if.op;
+        item.op_a = m_if.a;
+        item.op_b = m_if.b;
+        item.op_c = m_if.c;
+        item.done = m_if.done;
+        item.result = m_if.result;
+        mon_analysis_port.write(item);
+        
+    end
+  endtask: run_phase
+endclass
+
+class pe_scoreboard extends uvm_scoreboard;
+  `uvm_component_utils(pe_scoreboard)
+
+  uvm_analysis_imp  #(pe_seq_item, pe_scoreboard) scb_analysis_imp;
+
+  int score = 0, total = 0;
+  int golden;
+
+  function new(string name, uvm_component parent);
+      super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    scb_analysis_imp = new("scb_analysis_port", this);
+  endfunction
+
+  virtual function void report_phase(uvm_phase phase);
+    super.report_phase(phase);
+    `uvm_info("SCB", $sformatf("Simulation finished...., get score: %0d/%0d", score, total), UVM_LOW)
+  endfunction
+
+  function int gen_golden(pe_seq_item item);
+    case (item.op)
+      0: return item.op_a + item.op_b; // Add
+      1: return item.op_a - item.op_b; // Sub
+      2: return item.op_a * item.op_b; // Mul
+      3: return item.op_a * item.op_b + item.op_c; // MAC
+      default: begin
+        `uvm_error("SCB", $sformatf("Invalid operation: %0d detected", item.op))
+        return 'x; // Return 'x for invalid operation
+      end
+    endcase
+  endfunction
+
+  virtual function void write (pe_seq_item item);
+
+    if(item.op_en) begin
+      golden = gen_golden(item);
+      total ++;
+    end 
+
+    if(item.done) begin
+      if (item.result == golden) begin
+        score++;
+      end else begin
+        `uvm_error("SCB", $sformatf("Mismatch: Expected %0d, Got %0d", golden, item.result))
+      end
+    end
+  endfunction
+endclass
+//----------------
+// environment env
+//----------------
 class pe_env extends uvm_env;
 
   pe_drv m_drv;
   uvm_sequencer #(pe_seq_item) m_sqr;
   pe_seq m_seq;
+  pe_monitor m_mon;
+  pe_scoreboard m_scb;
 
   function new(string name, uvm_component parent = null);
     super.new(name, parent);
@@ -116,68 +204,27 @@ class pe_env extends uvm_env;
     super.build_phase(phase);
     m_drv = pe_drv::type_id::create("m_drv", this);
     m_sqr = uvm_sequencer#(pe_seq_item)::type_id::create("m_sqr", this);
+    m_mon = pe_monitor::type_id::create("m_mon", this);
     m_seq = pe_seq::type_id::create("m_seq");
+    m_scb = pe_scoreboard::type_id::create("m_scb", this);
   endfunction: build_phase
 
   function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
+    `uvm_info("ENV", "Connect driver and seqeuncer....", UVM_LOW);
     m_drv.seq_item_port.connect(m_sqr.seq_item_export);
+    `uvm_info("ENV", "Connect monitor and scoreboard....", UVM_LOW);
+    m_mon.mon_analysis_port.connect(m_scb.scb_analysis_imp);
   endfunction 
 
-  // task run_phase(uvm_phase phase);
-  //   `uvm_info("m_env", "Started run phase.", UVM_LOW);
-  //   super.run_phase(phase);
-  // endtask: run_phase
   task run_phase(uvm_phase phase);
     phase.raise_objection(this);
-    `uvm_info("LABEL", "Started run phase.", UVM_LOW);
+    `uvm_info("LABEL", "Started run phase.", UVM_HIGH);
      m_seq.start(m_sqr);
-    `uvm_info("LABEL", "Finished run phase.", UVM_LOW);
+    `uvm_info("LABEL", "Finished run phase.", UVM_HIGH);
     phase.drop_objection(this);
   endtask: run_phase
 endclass
-
-//----------------
-// environment env
-//----------------
-class env extends uvm_env;
-
-  virtual pe_if m_if;
-
-  function new(string name, uvm_component parent = null);
-    super.new(name, parent);
-  endfunction
-  
-  function void connect_phase(uvm_phase phase);
-    `uvm_info("LABEL", "Started connect phase.", UVM_HIGH);
-    // Get the interface from the resource database.
-    assert(uvm_resource_db#(virtual pe_if)::read_by_name(
-      get_full_name(), "pe_if", m_if));
-    `uvm_info("LABEL", "Finished connect phase.", UVM_HIGH);
-  endfunction: connect_phase
-
-  task run_phase(uvm_phase phase);
-    phase.raise_objection(this);
-    `uvm_info("LABEL", "Started run phase.", UVM_LOW);
-    begin
-      int a = 8'h2, b = 8'h3, c = 8'h4;
-      int op = 4'h3;
-      @(m_if.cb);
-      m_if.cb.a <= a;
-      m_if.cb.b <= b;
-      m_if.cb.c <= c;
-      m_if.cb.en <= 1'b1;
-      m_if.cb.op <= op;
-      repeat(2) @(m_if.cb);
-      `uvm_info("RESULT", $sformatf("%0d + %0d = %0d",
-        a, b, m_if.cb.result), UVM_LOW);
-    end
-    `uvm_info("LABEL", "Finished run phase.", UVM_LOW);
-    phase.drop_objection(this);
-  endtask: run_phase
-endclass
-
-
 
 //-----------
 // module top
@@ -185,16 +232,14 @@ endclass
 module top;
 
   bit clk;
-  // env environment;
   pe_env environment;
+
   pe dut(.clk (clk));
 
   initial begin
     environment = new("m_env");
-    // Put the interface into the resource database.
-    // uvm_resource_db#(virtual pe_if)::set("env",
-    //   "pe_if", dut.pe_if0);
-    uvm_config_db#(virtual pe_if)::set(null, "m_env.m_drv", "pe_if", dut.pe_if0);
+    // uvm_config_db#(virtual pe_if)::set(null, "m_env.m_drv", "pe_if", dut.pe_if0);
+    uvm_config_db#(virtual pe_if)::set(null, "m_env.*", "pe_if", dut.pe_if0);
     clk = 0;
     run_test();
   end

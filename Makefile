@@ -27,27 +27,6 @@ run : $(bld_dir)
 	+define$(DEBUG_DEF)$(FSDB_DEF) \
 	+define+UVM_CMDLINE_NO_DPI \
 	+define+UVM_REGEX_NO_DPI 
-	
-run_1 : $(bld_dir)
-	cd $(bld_dir); \
-	vcs -R -full64 -sverilog $(root_dir)/$(uvm_dir)/uvm.sv $(root_dir)/tb_1.sv -l vcs.log -debug_access+all +stdout=run.log \
-	+incdir+$(root_dir)/$(uvm_dir) \
-	+incdir+$(root_dir)/$(src_dir) \
-	-timescale=1ns/1ps \
-	+define$(DEBUG_DEF)$(FSDB_DEF) \
-	+define+UVM_CMDLINE_NO_DPI \
-	+define+UVM_REGEX_NO_DPI 
-
-
-run_2 : $(bld_dir)
-	cd $(bld_dir); \
-	vcs -R -full64 -sverilog $(root_dir)/$(uvm_dir)/uvm.sv $(root_dir)/tb_2.sv -l vcs.log -debug_access+all +stdout=run.log \
-	+incdir+$(root_dir)/$(uvm_dir) \
-	+incdir+$(root_dir)/$(src_dir) \
-	-timescale=1ns/1ps \
-	+define$(DEBUG_DEF)$(FSDB_DEF) \
-	+define+UVM_CMDLINE_NO_DPI \
-	+define+UVM_REGEX_NO_DPI 
 
 clean :
 	rm -rf $(bld_dir)

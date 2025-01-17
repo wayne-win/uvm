@@ -1,14 +1,15 @@
 module pe(
-  input            clk,
-  input [7:0]      op_a,
-  input [7:0]      op_b,
-  input [7:0]      op_c,
-  input            op_en,
-  input [3:0]      op_i,
-  output reg [8:0] result
+  input             clk,
+  input [7:0]       op_a,
+  input [7:0]       op_b,
+  input [7:0]       op_c,
+  input             op_en,
+  input [1:0]       op_i,
+  output reg [15:0] result,
+  output reg        done
 );
 
-  typedef enum logic [3:0] {ADD, SUB, MUL, MAC} op_t;
+  typedef enum logic [1:0] {ADD, SUB, MUL, MAC} op_t;
   op_t op;
 
   assign op = op_i;
@@ -21,7 +22,9 @@ module pe(
         MAC: result <= op_a * op_b + op_c;
         default: result <= 0;
       endcase
-      // pe_if.done <= 1;
+      done <= 1;
+    end else begin
+      done <= 0;
     end
   end
 endmodule: pe
@@ -35,8 +38,9 @@ interface pe_if(
   input [7:0] b,
   input [7:0] c,
   input       en,
-  input [3:0] op,
-  input [8:0] result
+  input [1:0] op,
+  input [15:0]result,
+  input       done
 );
 
   clocking cb @(posedge clk);
@@ -46,6 +50,7 @@ interface pe_if(
     output    en;
     output    op;
     input     result;
+    input     done;
   endclocking // cb
 
 endinterface: pe_if
@@ -60,5 +65,6 @@ bind pe pe_if pe_if0(
   .c(op_c),
   .en(op_en),
   .op(op_i),
-  .result(result)
+  .result(result),
+  .done(done)
 );

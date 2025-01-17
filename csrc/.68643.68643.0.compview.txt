@@ -1,6 +1,0 @@
-{"vcs1":{"timestamp_begin":1736911289.034433757, "rt":0.96, "ut":0.53, "st":0.09}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1736911288.697719572}
-{"VCS_COMP_START_TIME": 1736911288.697719572}
-{"VCS_COMP_END_TIME": 1736911290.057509644}
-{"VCS_USER_OPTIONS": "-R -full64 -sverilog ./uvm-core-2020.3.1/src/uvm.sv tb.sv -l vcs.log +stdout=run.log +incdir+./uvm-core-2020.3.1/src +define+UVM_CMDLINE_NO_DPI +define+UVM_REGEX_NO_DPI  "}
-{"vcs1": {"peak_mem": 354796}}
