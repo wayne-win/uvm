@@ -10,11 +10,11 @@ class pe_seq_item extends uvm_sequence_item;
 
     rand logic[1:0] op;
     rand bit        op_en;
-    rand int op_a;
+    rand int        op_a;
     rand logic[7:0] op_b;
     rand logic[7:0] op_c;
-    bit done;
-    int result;
+    bit             done;
+    int             result;
 
     constraint c1 { soft op_a inside {[5:150]}; }
     constraint c2 { soft op_b < op_a; }
@@ -26,6 +26,8 @@ class pe_seq_item extends uvm_sequence_item;
     virtual function string convert2str();
       return $sformatf("op_en=%0d, op_a=%0d, ob_b=%0d, op_c=%0d", op_en, op_a, op_b, op_c);
     endfunction
+
+
 endclass
 
 class extend_pe_seq_itm extends pe_seq_item;
@@ -71,7 +73,6 @@ class pe_drv extends uvm_driver#(pe_seq_item);
 
   pe_seq_item m_item;
   virtual pe_if m_if;
-  int processed_items = 0;
 
   function new(string name, uvm_component parent);
       super.new(name, parent);
@@ -197,6 +198,37 @@ class pe_scoreboard extends uvm_scoreboard;
     end
   endfunction
 endclass
+
+// subscriber to receive the tesr pattern for coverage
+class pe_cg extends uvm_subscriber#(pe_seq_item);
+  `uvm_component_utils(pe_cg)
+
+  pe_seq_item m_item;
+
+  covergroup cg;
+    coverpoint m_item.op iff (m_item.op_en) {
+        // bins for mode
+        bins add = {0};
+        bins sub = {1};
+        bins mul = {2};
+        bins mac = {3};
+    }
+  endgroup
+
+  function new(string name, uvm_component parent);
+    super.new(name, parent);
+    cg = new();
+  endfunction
+
+  virtual function void write(pe_seq_item t);
+    m_item = t;
+    cg.sample();
+    `uvm_info("m_cg", $sformatf("Got new item: %s", m_item.convert2str()), UVM_HIGH)
+  endfunction
+
+endclass
+// 
+
 //----------------
 // environment env
 //----------------
@@ -207,6 +239,7 @@ class pe_env extends uvm_env;
   pe_seq m_seq;
   pe_monitor m_mon;
   pe_scoreboard m_scb;
+  pe_cg m_cg;
 
   function new(string name, uvm_component parent = null);
     super.new(name, parent);
@@ -219,6 +252,7 @@ class pe_env extends uvm_env;
     m_mon = pe_monitor::type_id::create("m_mon", this);
     m_seq = pe_seq::type_id::create("m_seq");
     m_scb = pe_scoreboard::type_id::create("m_scb", this);
+    m_cg  = pe_cg::type_id::create("m_sub", this);
   endfunction: build_phase
 
   function void connect_phase(uvm_phase phase);
@@ -227,6 +261,7 @@ class pe_env extends uvm_env;
     m_drv.seq_item_port.connect(m_sqr.seq_item_export);
     `uvm_info("ENV", "Connect monitor and scoreboard....", UVM_LOW);
     m_mon.mon_analysis_port.connect(m_scb.scb_analysis_imp);
+    m_mon.mon_analysis_port.connect(m_cg.analysis_export);
   endfunction 
 
   task run_phase(uvm_phase phase);
@@ -234,6 +269,7 @@ class pe_env extends uvm_env;
     `uvm_info("LABEL", "Started run phase.", UVM_HIGH);
      m_seq.start(m_sqr);
     `uvm_info("LABEL", "Finished run phase.", UVM_HIGH);
+    `uvm_info("COVERAGE", $sformatf("Coverage = %0.2f%%", this.m_cg.cg.get_coverage()), UVM_LOW);
     phase.drop_objection(this);
   endtask: run_phase
 endclass
@@ -251,6 +287,7 @@ class extend_pe_env extends pe_env;
   endfunction: build_phase
 
 endclass
+//
 //-----------
 // module top
 //-----------
@@ -258,15 +295,15 @@ module top;
 
   bit clk;
 `ifdef EXTEND
-  extend_pe_env environment;
+  extend_pe_env m_env;
 `else
-  pe_env environment;
+  pe_env m_env;
 `endif
 
   pe dut(.clk (clk));
 
   initial begin
-    environment = new("m_env");
+    m_env = new("m_env");
     uvm_config_db#(virtual pe_if)::set(null, "m_env.*", "pe_if", dut.pe_if0);
     clk = 0;
     run_test();
